@@ -65,6 +65,10 @@ NOT included these features because as far as I can see the terms labelled "Mean
 are inputs to the angle calculations and not averages of the measurements in their 
 own right.    
 
+## Column names
+I have left the column names (i.e. the features) largely unchanged except to remove invalid characters and rename duplicates.
+Arguably terms like "t", "f", "Acc, "Gyro" and "Mag" could be expanded out but I don't think this adds much clarity to the data. 
+
 ## Other information
 The details of the actions performed on the above data are described in "run_analysis.R"
 

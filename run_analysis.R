@@ -62,7 +62,7 @@ run_analysis <- function(savefile = "summarydata.txt") {
     tidydata <- alldata %>%
     ## 2. Select mean and std columns
     ## 3. Convert activity numbers to descriptive labels 
-        merge(activities, by.x = "activityid", by.y = "activityid") %>%
+        merge(activities, by = "activityid") %>%
         select(subjectid, activity, matches("([.]mean[.][.])|([.]std[.][.])"))
 
     ## 4. Label columns descriptively

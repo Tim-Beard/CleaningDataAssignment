@@ -61,10 +61,9 @@ run_analysis <- function(savefile = "summarydata.txt") {
     colnames(activities) <- c("activityid", "activity")
     tidydata <- alldata %>%
     ## 2. Select mean and std columns
-        select(subjectid, activity, matches("([.]mean[.][.])|([.]std[.][.])"))
     ## 3. Convert activity numbers to descriptive labels 
         merge(activities, by.x = "activityid", by.y = "activityid") %>%
-
+        select(subjectid, activity, matches("([.]mean[.][.])|([.]std[.][.])"))
 
     ## 4. Label columns descriptively
     ## I can't see an obviously better way of renaming all the columns

@@ -57,13 +57,14 @@ run_analysis <- function(savefile = "summarydata.txt") {
     
     alldata <- tbl_df(alldata) # create a tibble for dplyr
    
-    ## 3. Convert activity numbers to descriptive labels 
     activities <- read.table("UCI HAR Dataset//activity_labels.txt")
     colnames(activities) <- c("activityid", "activity")
     tidydata <- alldata %>%
-        merge(activities, by.x = "activityid", by.y = "activityid") %>%
-        ## 2. Select mean and std columns
+    ## 2. Select mean and std columns
         select(subjectid, activity, matches("([.]mean[.][.])|([.]std[.][.])"))
+    ## 3. Convert activity numbers to descriptive labels 
+        merge(activities, by.x = "activityid", by.y = "activityid") %>%
+
 
     ## 4. Label columns descriptively
     ## I can't see an obviously better way of renaming all the columns

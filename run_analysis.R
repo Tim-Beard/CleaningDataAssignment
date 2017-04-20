@@ -31,37 +31,34 @@ run_analysis <- function(savefile = "summarydata.txt") {
     
     ## 1. Read in all the data files and combine them
     print("Reading in training data...")
-    
     xtrain <- read.table("UCI HAR Dataset//train//X_train.txt")
     ytrain <- read.table("UCI HAR Dataset//train//y_train.txt")
     subtrain <- read.table("UCI HAR Dataset//train//subject_train.txt")
-    
     traindata <- cbind(subtrain, ytrain, xtrain) # merge the columns
     
     print("Reading in test data...")
     xtest <- read.table("UCI HAR Dataset//test//X_test.txt")
     ytest <- read.table("UCI HAR Dataset//test//y_test.txt")
     subtest <- read.table("UCI HAR Dataset//test//subject_test.txt")
-    
     testdata <- cbind(subtest, ytest, xtest) # merge the columns
     
-    alldata <- rbind(traindata, testdata) # merge the two datasets
-    
     print("Merging and tidying data...")
-    
+    alldata <- rbind(traindata, testdata) # merge the two datasets
+       
     ## Add supplied column headings
     ## The "make.names" function ensures the features are valid names
     features <- read.table("UCI HAR Dataset//features.txt")
     colnames(alldata) <- c("subjectid", "activityid", 
                            make.names(features$V2, unique = TRUE))
-    
     alldata <- tbl_df(alldata) # create a tibble for dplyr
-   
+    
+    ## Get the mapping between activity id and activity name
     activities <- read.table("UCI HAR Dataset//activity_labels.txt")
     colnames(activities) <- c("activityid", "activity")
-    tidydata <- alldata %>%
+    
     ## 2. Select mean and std columns
     ## 3. Convert activity numbers to descriptive labels 
+    tidydata <- alldata %>%
         merge(activities, by = "activityid") %>%
         select(subjectid, activity, matches("([.]mean[.][.])|([.]std[.][.])"))
 

@@ -6,6 +6,13 @@
 This is the readme file for "Getting and Cleaning Data" course week 4 assignment.
 The goal of the assignment is to gather some data and tidy it up. 
 
+## Repo contents
+- readme.md: this file
+- run_analysis.R: the code to tidy the data
+- codebook.md: description of the data headers
+
+To reproduce the data analysis, download the data from the data source below, unzip it as shown and run `run_analysis.R` in R
+
 ## Data source: 
 
 The data for this analysis was manually downloaded from:
@@ -23,7 +30,7 @@ and unzipped using the default Windows 10 zip tool into the following directory 
                     |---- {training data}  
 ```                     
 All other actions on the data are performed by "run_analysis.R" assuming the above
-directiry structure.
+directory structure.
 
 ## Actions
 The script "run_analysis.R" does the following:
